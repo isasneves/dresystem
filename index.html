@@ -5,7 +5,10 @@
 </head>
 <body>
 
-  <h1>Sistema de DRE</h1>
+ <h1>Sistema de DRE</h1>
+
+<div class="card">
+  <h2>Adicionar Transação</h2>
 
   <input type="text" id="descricao" placeholder="Descrição">
   <input type="number" id="valor" placeholder="Valor">
@@ -16,14 +19,22 @@
   </select>
 
   <button onclick="adicionarTransacao()">Adicionar</button>
+</div>
 
+<div class="card">
   <h2>Transações</h2>
   <ul id="lista"></ul>
+</div>
 
+<div class="card">
   <h2>Resultado</h2>
   <p id="resultado"></p>
+</div>
 
-  <script src="script.js"></script>
+<canvas id="grafico"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
