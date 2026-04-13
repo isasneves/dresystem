@@ -1,4 +1,4 @@
-let transacoes = [];
+let transacoes = JSON.parse(localStorage.getItem("transacoes")) || [];
 
 function adicionarTransacao() {
   let descricao = document.getElementById("descricao").value;
@@ -11,6 +11,7 @@ function adicionarTransacao() {
 
   atualizarLista();
   calcularDRE();
+  localStorage.setItem("transacoes", JSON.stringify(transacoes));
 }
 
 function atualizarLista() {
@@ -35,4 +36,25 @@ function calcularDRE() {
 
   document.getElementById("resultado").innerText =
     `Receita: R$ ${receita} | Despesa: R$ ${despesa} | Lucro: R$ ${lucro}`;
+}
+let grafico;
+atualizarGrafico(receita, despesa);
+
+function atualizarGrafico(receita, despesa) {
+  let ctx = document.getElementById('grafico').getContext('2d');
+
+  if (grafico) {
+    grafico.destroy();
+  }
+
+  grafico = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Receita', 'Despesa'],
+      datasets: [{
+        label: 'Financeiro',
+        data: [receita, despesa]
+      }]
+    }
+  });
 }
