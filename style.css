@@ -1,7 +1,7 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #0f172a;
-  color: #f1f5f9;
+  font-family: Arial, sans-serif;
+  background-color: #0f172a;
+  color: white;
   padding: 30px;
 }
 
@@ -9,7 +9,7 @@ h1 {
   color: #38bdf8;
 }
 
-input, select, button {
+input, select {
   padding: 10px;
   margin: 5px;
   border-radius: 8px;
@@ -17,18 +17,21 @@ input, select, button {
 }
 
 button {
-  background: #38bdf8;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #38bdf8;
   color: black;
   font-weight: bold;
   cursor: pointer;
 }
 
 button:hover {
-  background: #0ea5e9;
+  background-color: #0ea5e9;
 }
 
 .card {
-  background: #1e293b;
+  background-color: #1e293b;
   padding: 20px;
   border-radius: 12px;
   margin-top: 20px;
