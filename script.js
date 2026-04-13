@@ -1,17 +1,25 @@
 let transacoes = JSON.parse(localStorage.getItem("transacoes")) || [];
 
+let grafico;
+
 function adicionarTransacao() {
   let descricao = document.getElementById("descricao").value;
   let valor = parseFloat(document.getElementById("valor").value);
   let tipo = document.getElementById("tipo").value;
 
+  if (!descricao || !valor) {
+    alert("Preencha os campos!");
+    return;
+  }
+
   let transacao = { descricao, valor, tipo };
 
   transacoes.push(transacao);
 
+  localStorage.setItem("transacoes", JSON.stringify(transacoes));
+
   atualizarLista();
   calcularDRE();
-  localStorage.setItem("transacoes", JSON.stringify(transacoes));
 }
 
 function atualizarLista() {
@@ -36,25 +44,29 @@ function calcularDRE() {
 
   document.getElementById("resultado").innerText =
     `Receita: R$ ${receita} | Despesa: R$ ${despesa} | Lucro: R$ ${lucro}`;
+
+  atualizarGrafico(receita, despesa);
 }
-let grafico;
-atualizarGrafico(receita, despesa);
 
 function atualizarGrafico(receita, despesa) {
-  let ctx = document.getElementById('grafico').getContext('2d');
+  let ctx = document.getElementById("grafico").getContext("2d");
 
   if (grafico) {
     grafico.destroy();
   }
 
   grafico = new Chart(ctx, {
-    type: 'bar',
+    type: "bar",
     data: {
-      labels: ['Receita', 'Despesa'],
+      labels: ["Receita", "Despesa"],
       datasets: [{
-        label: 'Financeiro',
+        label: "Financeiro",
         data: [receita, despesa]
       }]
     }
   });
 }
+
+// carregar ao abrir
+atualizarLista();
+calcularDRE();
